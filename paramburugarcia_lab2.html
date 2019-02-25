@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- Modify Title between these comments (Choose correct class number and substitute your username) -->
+	<title>ITMD 565 Lab 2 - paramburugarcia - Simple Calculator</title>
+	<!-- Modify Title between these comments -->
+	<style type="text/css">
+		body {
+			background-color: #ddd;
+			font-family: sans-serif;
+		}
+		#main-container {
+			width: 750px;
+			background-color: white;
+			margin:0 auto;
+			text-align: center;
+			padding: 10px;
+		}
+		#calculator-wrapper #input-wrapper {
+			margin: 40px 0 20px;
+		}
+		#calculator-wrapper #input-wrapper label {
+			font-size: 18px;
+			margin: 0 4px;
+			font-style: italic;
+		}
+		#calculator-wrapper #input-wrapper input {
+			font-size: 20px;
+			padding: 4px;
+			border: 2px solid #bbb;
+			background-color: #eee;
+		}
+		#calculator-wrapper #button-wrapper {
+			margin: 20px 0;
+		}
+		#calculator-wrapper #button-wrapper button {
+			font-size: 20px;
+			margin: 0 5px;
+		}
+		#results {
+			margin: 20px;
+			background-color: #eee;
+			border: 2px solid #bbb;
+			font-size: 24px;
+			padding: 14px;
+			overflow-x: auto;
+			min-height: 25px;
+		}
+	</style>
+</head>
+<body>
+	<div id="main-container">
+		<!-- Modify headlines between these comments (Choose correct class number and substitute Name and Email) -->
+		<h1>ITMD 565 - Lab 2 - Simple Calculator</h1>
+		<h2>Pablo Aramburu Garcia - paramburugarcia@hawk.iit.edu</h2>
+		<!-- Modify headlines between these comments -->
+		<div id="calculator-wrapper">
+			<div id="input-wrapper">
+				<label>Value 1: <input type="text" name="val1" id="val1"></label>
+				<label>Value 2: <input type="text" name="val2" id="val2"></label>
+			</div>
+			<div id="button-wrapper">
+				<button id="addBtn">Add</button>
+				<button id="subBtn">Subtract</button>
+				<button id="multBtn">Multiply</button>
+				<button id="divBtn">Divide</button>
+				<button id="resetBtn">Reset</button>
+			</div>
+			<div id="results"></div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		// Begin JavaScript Code Here - Do not put JavaScript outside these comments.
+
+		var value1="";
+		var value2="";
+		var show = true;
+		
+		document.getElementById("addBtn").addEventListener("click", addFunction);
+		document.getElementById("subBtn").addEventListener("click", subFunction);
+		document.getElementById("multBtn").addEventListener("click", multFunction);
+		document.getElementById("divBtn").addEventListener("click", divFunction);
+		document.getElementById("resetBtn").addEventListener("click", resetFunction);
+
+		function addFunction(){
+			getValues();
+			if(show == true){ document.getElementById("results").innerHTML = +value1 + +value2;}
+		}
+		function subFunction(){
+			getValues();
+			if(show==true){ document.getElementById("results").innerHTML = +value1 - +value2;}
+		}
+		function multFunction(){
+			getValues();
+			if(show==true) { document.getElementById("results").innerHTML = +value1 * +value2;}
+		}
+		function divFunction(){
+			getValues();
+			if (value2 == 0){
+				window.alert("Value 2 can not be 0");
+			}else if (show==true){
+				document.getElementById("results").innerHTML = +value1 / +value2;
+			}
+		}
+		function resetFunction(){
+			document.getElementById("val1").value="";
+			document.getElementById("val2").value = "";
+			document.getElementById("results").innerHTML = "";
+		}
+
+		function getValues(){
+			value1 = document.getElementById("val1").value;
+			value2 = document.getElementById("val2").value;
+			if (value1 == "" || value1 == null || value2 == "" || value2 == null){
+				window.alert("You must introduce two values");
+				show = false;
+			} else if(isNaN(value1) || isNaN(value2)){
+				window.alert("Values can only be numbers");
+				show = false;
+			}else{
+				show = true;
+			}
+
+		}
+
+		// End JavaScript Code Here - Do not put JavaScript outside these comments.
+	</script>
+</body>
+</html>
